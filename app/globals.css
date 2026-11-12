@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+:root {
+  --background: #000000;
+  --foreground: #ededed;
+  --accent: #A3E635;
+  --accent-hover: #84CC16;
+  --accent-glow: rgba(163, 230, 53, 0.2);
+  --card-bg: #0a0a0a;
+  --card-border: rgba(163, 230, 53, 0.22);
+  --muted: #a1a1aa;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Primary accent currently set to Lime Green */
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-glow: var(--accent-glow);
+
+  /* Preserved color tokens for direct className access */
+  --color-electric-blue: #3B82F6;
+  --color-electric-blue-hover: #2563EB;
+  --color-electric-blue-glow: rgba(59, 130, 246, 0.2);
+  --color-lime-green: #A3E635;
+  --color-lime-green-hover: #84CC16;
+  --color-lime-green-glow: rgba(163, 230, 53, 0.2);
+
+  --color-card-bg: var(--card-bg);
+  --color-card-border: var(--card-border);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Scroll animation classes */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children animations */
+.stagger-children .animate-on-scroll:nth-child(1) { transition-delay: 0ms; }
+.stagger-children .animate-on-scroll:nth-child(2) { transition-delay: 100ms; }
+.stagger-children .animate-on-scroll:nth-child(3) { transition-delay: 200ms; }
+.stagger-children .animate-on-scroll:nth-child(4) { transition-delay: 300ms; }
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A3E635;
+}
+
+/* Circuit & Electricity Animations */
+@keyframes circuit-flow {
+  0% {
+    stroke-dashoffset: 600;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes circuit-pulse-reverse {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 600;
+  }
+}
+
+@keyframes electric-pulse {
+  0%, 100% {
+    opacity: 0.15;
+    filter: drop-shadow(0 0 2px rgba(163, 230, 53, 0.4));
+  }
+  50% {
+    opacity: 0.85;
+    filter: drop-shadow(0 0 10px rgba(163, 230, 53, 0.95)) drop-shadow(0 0 20px rgba(190, 242, 100, 0.7));
+  }
+}
+
+@keyframes aura-float-1 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+    opacity: 0.16;
+  }
+  50% {
+    transform: translate(30px, -40px) scale(1.1);
+    opacity: 0.24;
+  }
+}
+
+@keyframes aura-float-2 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+    opacity: 0.14;
+  }
+  50% {
+    transform: translate(-35px, 35px) scale(1.08);
+    opacity: 0.22;
+  }
+}
+
+.animate-aura-1 {
+  animation: aura-float-1 12s ease-in-out infinite;
+}
+
+.animate-aura-2 {
+  animation: aura-float-2 15s ease-in-out infinite;
+}
+
+.animate-electric-pulse {
+  animation: electric-pulse 3s ease-in-out infinite;
+}
